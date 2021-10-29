@@ -7,5 +7,8 @@ const actionsRouter = require('./actions/actions-router');
 server.use(express.json());
 server.use('/api/projects', projectsRouter);
 server.use('/api/actions', actionsRouter);
+server.use((req, res) => {
+  res.status(404).json({message:`You may not make a ${req.method} request to the route ${req.url}`})
+});
 
 module.exports = server;
